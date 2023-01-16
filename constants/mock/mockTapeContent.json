@@ -1,0 +1,26 @@
+[
+  {
+    "id": "1",
+    "number": 18000,
+    "operator": "*",
+    "note": ""
+  },
+  {
+    "id": "2",
+    "number": 7000,
+    "operator": "+",
+    "note": "🐀"
+  },
+  {
+    "id": "3",
+    "number": 19000,
+    "operator": "-",
+    "note": "A la grande"
+  },
+  {
+    "id": "4",
+    "number": 96000,
+    "operator": "-",
+    "note": "le puse Cuca"
+  }
+]
