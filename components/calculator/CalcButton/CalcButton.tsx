@@ -1,17 +1,12 @@
+import { CalcButtonProps, Operator } from "../../../types/propTypes";
 import { Pressable, Text } from "react-native";
 
 import React from "react";
 import { styles } from "./styles";
 
-type Props = {
-  label: string;
-  type?: "small" | "minus" | "plus";
-  onPress: (arg: string) => void;
-};
-
-const CalcButton = ({ label, type, onPress }: Props) => {
+const CalcButton = ({ label, type, onPress }: CalcButtonProps) => {
   const handlePress = () => {
-    onPress(label);
+    onPress(label === "⩲" ? "+" : label);
   };
   return (
     <Pressable

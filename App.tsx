@@ -1,16 +1,16 @@
 import { Calculator, Tape } from "./components";
 import { StyleSheet, View } from "react-native";
 
+import { CalcProvider } from "./context/CalcContext";
 import theme from "./constants/themes/darkTheme";
-import { useCalculator } from "./hooks";
 
 export default function App() {
-  const { tape, calcData } = useCalculator();
-
   return (
     <View style={styles.container}>
-      <Tape content={tape} />
-      <Calculator data={calcData} />
+      <CalcProvider>
+        <Tape />
+        <Calculator />
+      </CalcProvider>
     </View>
   );
 }

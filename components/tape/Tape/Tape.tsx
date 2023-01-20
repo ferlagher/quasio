@@ -1,32 +1,19 @@
 import { FlatList, View } from "react-native";
-import React, { useEffect, useState } from "react";
+import React, { useContext } from "react";
 
+import { CalcContext } from "../../../context/CalcContext";
 import ListElement from "../ListElement/ListElement";
 import { styles } from "./styles";
 
-type Props = {
-  content: {
-    id: string;
-    number: number;
-    operator: string;
-    note?: string;
-  }[];
-};
-
-const Tape = ({ content }: Props) => {
+const Tape = () => {
+  const { tape } = useContext(CalcContext);
   return (
     <View style={styles.tape}>
       <FlatList
         removeClippedSubviews={false}
-        data={content}
+        data={tape}
         keyExtractor={item => item.id}
-        renderItem={({ item }) => (
-          <ListElement
-            number={item.number}
-            operator={item.operator}
-            note={item?.note}
-          />
-        )}
+        renderItem={({ item }) => <ListElement item={item} />}
       />
     </View>
   );

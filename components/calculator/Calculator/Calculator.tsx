@@ -1,13 +1,27 @@
-import { GestureResponderEvent, View } from "react-native";
+import React, { useContext } from "react";
 
 import CalcButton from "../CalcButton/CalcButton";
-import { CalculatorProps } from "../../../types/propTypes";
+import { CalcContext } from "../../../context/CalcContext";
 import Display from "../Display/Display";
-import React from "react";
+import { Operator } from "../../../types/propTypes";
+import { View } from "react-native";
 import { styles } from "./styles";
 
-const Calculator = ({ data }: CalculatorProps) => {
-  const { display, currentNumber, updateDisplay } = data;
+const Calculator = () => {
+  const { calcData } = useContext(CalcContext);
+  const {
+    display,
+    currentNumber,
+    operator,
+    setOperator,
+    updateTape,
+    updateDisplay,
+  } = calcData;
+
+  const handlePressOperator = (operator: Operator) => {
+    currentNumber && updateTape(currentNumber, operator);
+  };
+
   return (
     <View style={styles.calculator}>
       <Display value={display} />
@@ -39,14 +53,14 @@ const Calculator = ({ data }: CalculatorProps) => {
         <CalcButton label="6" onPress={updateDisplay} />
         <CalcButton label="5" onPress={updateDisplay} />
         <CalcButton label="4" onPress={updateDisplay} />
-        <CalcButton label="-" onPress={() => {}} type="minus" />
-        <CalcButton label="÷" onPress={() => {}} />
+        <CalcButton label="-" onPress={handlePressOperator} type="minus" />
+        <CalcButton label="÷" onPress={handlePressOperator} />
 
         <CalcButton label="3" onPress={updateDisplay} />
         <CalcButton label="2" onPress={updateDisplay} />
         <CalcButton label="1" onPress={updateDisplay} />
-        <CalcButton label="+" onPress={() => {}} type="plus" />
-        <CalcButton label="×" onPress={() => {}} />
+        <CalcButton label="⩲" onPress={handlePressOperator} type="plus" />
+        <CalcButton label="×" onPress={handlePressOperator} />
 
         <CalcButton label="0" onPress={updateDisplay} />
         <CalcButton label="00" onPress={updateDisplay} />

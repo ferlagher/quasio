@@ -1,16 +1,12 @@
 import { Pressable, Text, TextInput } from "react-native";
 import React, { memo, useRef, useState } from "react";
 
+import { ListElementProps } from "../../../types/propTypes";
 import numeral from "numeral";
 import { styles } from "./styles";
 
-type Props = {
-  number: number;
-  operator: string;
-  note?: string;
-};
-
-const ListElement = ({ number, operator, note = "" }: Props) => {
+const ListElement = ({ item }: ListElementProps) => {
+  const { number, operator, note } = item;
   const formatedNumber = numeral(number).format("0,0.00");
   const [listNote, setListNote] = useState(note);
   const inputRef = useRef<TextInput>(null);
