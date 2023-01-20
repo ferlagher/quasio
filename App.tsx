@@ -1,14 +1,16 @@
 import { Calculator, Tape } from "./components";
 import { StyleSheet, View } from "react-native";
 
-import mockTapeContent from "./constants/mock/mockTapeContent.json";
 import theme from "./constants/themes/darkTheme";
+import { useCalculator } from "./hooks";
 
 export default function App() {
+  const { tape, calcData } = useCalculator();
+
   return (
     <View style={styles.container}>
-      <Tape content={mockTapeContent} />
-      <Calculator />
+      <Tape content={tape} />
+      <Calculator data={calcData} />
     </View>
   );
 }

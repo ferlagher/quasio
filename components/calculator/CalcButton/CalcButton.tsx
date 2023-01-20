@@ -6,13 +6,16 @@ import { styles } from "./styles";
 type Props = {
   label: string;
   type?: "small" | "minus" | "plus";
-  onPress: () => void;
+  onPress: (arg: string) => void;
 };
 
 const CalcButton = ({ label, type, onPress }: Props) => {
+  const handlePress = () => {
+    onPress(label);
+  };
   return (
     <Pressable
-      onPress={onPress}
+      onPress={handlePress}
       style={type ? { ...styles.button, ...styles[type] } : styles.button}
     >
       <Text
