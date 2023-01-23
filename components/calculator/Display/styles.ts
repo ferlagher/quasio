@@ -6,6 +6,8 @@ export const styles = StyleSheet.create({
     backgroundColor: theme.COLOR_DISPLAY,
     paddingHorizontal: theme.SPACE_LG,
     paddingVertical: theme.SPACE_MD,
+    borderTopLeftRadius: theme.BORDER_RADIUS_MD,
+    borderTopRightRadius: theme.BORDER_RADIUS_MD,
   },
   textOn: {
     fontFamily: "DSEG7",

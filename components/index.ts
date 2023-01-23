@@ -1,4 +1,4 @@
 export * from "./calculator";
 export * from "./tape";
-//export * from './menu';
-//export * from './shared';
+export * from "./menu";
+export * from "./manual";

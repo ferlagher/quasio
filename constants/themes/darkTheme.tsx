@@ -6,8 +6,9 @@ export default {
   COLOR_BUTTON_MINUS: "#903C3C",
   COLOR_TEXT: "#FBF3F3",
   COLOR_TEXT_NEGATIVE: "#FF6A6A",
-  COLOR_DISPLAY: "#1E1E1E",
+  COLOR_DISPLAY: "#131718",
   COLOR_DISPLAY_TEXT: "#00ECF8",
+  COLOR_OVERLAY: "#00000080",
   FONT_XL: 32,
   FONT_LG: 24,
   FONT_MD: 18,
@@ -18,6 +19,7 @@ export default {
   SPACE_XS: 4,
   BORDER_RADIUS_MD: 16,
   BORDER_RADIUS_SM: 8,
+  BORDER_RADIUS_XS: 4,
   SHADOW_MD: {
     shadowColor: "#000",
     shadowOffset: {

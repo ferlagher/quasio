@@ -8,6 +8,7 @@ const CalcButton = ({ label, type, onPress }: CalcButtonProps) => {
   const handlePress = () => {
     onPress(label === "⩲" ? "+" : label);
   };
+
   return (
     <Pressable
       onPress={handlePress}

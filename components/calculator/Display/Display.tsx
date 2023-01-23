@@ -2,16 +2,9 @@ import { Text, View } from "react-native";
 
 import React from "react";
 import { styles } from "./styles";
-import { useFonts } from "expo-font";
 
 const Display = ({ value = "0" }) => {
-  const [fontsLoaded] = useFonts({
-    DSEG7: require("../../../assets/fonts/DSEG7Modern-BoldItalic.ttf"),
-  });
-
-  if (!fontsLoaded) {
-    return null;
-  }
+  value = value.replace("*", "");
 
   return (
     <View style={styles.display}>

@@ -30,6 +30,7 @@ export const styles = StyleSheet.create({
     padding: theme.SPACE_XS,
   },
   text: {
+    fontFamily: "Inter",
     fontSize: theme.FONT_XL,
     textAlign: "center",
     textAlignVertical: "center",
