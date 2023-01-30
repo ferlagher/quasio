@@ -86,3 +86,8 @@ export type CalcButtonProps = {
 export type ListElementProps = {
   item: TapeItem;
 };
+
+export type RootStackParamList = {
+  Calculator: undefined;
+  Manual: undefined;
+};

@@ -1,16 +1,15 @@
+import { ParamListBase, useNavigation } from "@react-navigation/native";
 import { Pressable, Text } from "react-native";
 
+import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import React from "react";
-import { Views } from "../../../types/propTypes";
 import { styles } from "./styles";
 
-type Props = {
-  setView: React.Dispatch<React.SetStateAction<Views>>;
-};
+export const BackButton = () => {
+  const navigation = useNavigation<NativeStackNavigationProp<ParamListBase>>();
 
-export const BackButton = ({ setView }: Props) => {
   return (
-    <Pressable style={styles.button} onPress={() => setView("calculator")}>
+    <Pressable style={styles.button} onPress={() => navigation.goBack()}>
       <Text style={styles.text}>Back</Text>
     </Pressable>
   );
