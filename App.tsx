@@ -1,9 +1,5 @@
-import { Calculator, Manual, Menu, Tape } from "./components";
-
-import { BackButton } from "./components/shared";
 import { CalcProvider } from "./context/CalcContext";
-import { Navigator } from "./navigation/Navigator";
-import { View } from "react-native";
+import { Navigator } from "./navigation";
 import { useFonts } from "expo-font";
 
 export default function App() {

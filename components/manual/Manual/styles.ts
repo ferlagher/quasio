@@ -5,9 +5,10 @@ export const styles = StyleSheet.create({
   container: {
     flex: 1,
     paddingHorizontal: theme.SPACE_LG,
-    marginTop: theme.SPACE_LG,
+    backgroundColor: theme.COLOR_BACKGROUND,
   },
   content: {
+    paddingTop: theme.SPACE_LG,
     paddingBottom: theme.SPACE_LG * 2.5,
   },
   title: {

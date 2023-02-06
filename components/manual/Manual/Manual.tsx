@@ -1,10 +1,10 @@
-import { Pressable, ScrollView, Text } from "react-native";
+import { ScrollView, Text } from "react-native";
 
 import { ButtonIcon } from "../ButtonIcon/ButtonIcon";
 import React from "react";
 import { styles } from "./styles";
 
-const Manual = () => {
+const ManualBasic = () => {
   return (
     <ScrollView contentContainerStyle={styles.content} style={styles.container}>
       <Text style={styles.title}>Basic calculations</Text>
@@ -39,6 +39,13 @@ const Manual = () => {
         subtract it to the total. You can also multiply or divide the previous
         total.
       </Text>
+    </ScrollView>
+  );
+};
+
+const ManualMemory = () => {
+  return (
+    <ScrollView contentContainerStyle={styles.content} style={styles.container}>
       <Text style={styles.title}>Memory</Text>
       <Text style={styles.paragraph}>
         To use the independent memory, press <ButtonIcon text="M+" /> or{" "}
@@ -48,6 +55,13 @@ const Manual = () => {
         <ButtonIcon text="M♢" /> to print the current subtotal and{" "}
         <ButtonIcon text="M*" /> to print the total and clear the memory.
       </Text>
+    </ScrollView>
+  );
+};
+
+const ManualPercentage = () => {
+  return (
+    <ScrollView contentContainerStyle={styles.content} style={styles.container}>
       <Text style={styles.title}>Percentage</Text>
       <Text style={styles.paragraph}>
         To find the percentage of a number, digit that number followed by the
@@ -71,6 +85,13 @@ const Manual = () => {
         To add or subtract taxes to a price, digit the price followed by{" "}
         <ButtonIcon text="TAX+" /> or <ButtonIcon text="TAX-" /> respectively.
       </Text>
+    </ScrollView>
+  );
+};
+
+const ManualCost = () => {
+  return (
+    <ScrollView contentContainerStyle={styles.content} style={styles.container}>
       <Text style={styles.title}>Cost, sell and margin</Text>
       <Text style={styles.subtitle}>Calulating the cost</Text>
       <Text style={styles.paragraph}>
@@ -103,4 +124,4 @@ const Manual = () => {
   );
 };
 
-export default Manual;
+export { ManualBasic, ManualMemory, ManualPercentage, ManualCost };

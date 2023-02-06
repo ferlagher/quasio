@@ -7,7 +7,7 @@ import { styles } from "./styles";
 
 const Tape = () => {
   const { tape } = useContext(CalcContext);
-  const tapeRef = useRef(null);
+  const tapeRef = useRef<FlatList>(null);
   return (
     <View style={styles.tape}>
       <FlatList
@@ -18,7 +18,7 @@ const Tape = () => {
         keyExtractor={item => item.id}
         renderItem={({ item }) => <ListElement item={item} />}
         onContentSizeChange={() =>
-          tapeRef.current.scrollToEnd({ animated: true })
+          tapeRef.current?.scrollToEnd({ animated: true })
         }
         removeClippedSubviews={false}
       />

@@ -1,3 +1,1 @@
-import Manual from "./Manual/Manual";
-
-export { Manual };
+export * from "./Manual/Manual";
