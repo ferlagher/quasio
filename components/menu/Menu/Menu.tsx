@@ -1,27 +1,39 @@
 import { ParamListBase, useNavigation } from "@react-navigation/native";
-import React, { useContext, useState } from "react";
-import { Text, View } from "react-native";
+import { Pressable, Text, View } from "react-native";
+import React, { useState } from "react";
+import { clearAll, clearTape } from "../../../store";
 
-import { CalcContext } from "../../../context/CalcContext";
 import { MenuButton } from "../MenuButton/MenuButton";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { styles } from "./styles";
+import { useDispatch } from "react-redux";
 
 const Menu = () => {
   const navigation = useNavigation<NativeStackNavigationProp<ParamListBase>>();
+  const dispatch = useDispatch();
   const [isOpen, setIsOpen] = useState(false);
-  const { clearTape } = useContext(CalcContext);
+
+  const handleClear = () => {
+    dispatch(clearTape());
+    dispatch(clearAll());
+  };
+
   return (
     <>
-      {isOpen && <View style={styles.overlay} />}
-      <View style={styles.wrapper}>
+      {isOpen && (
+        <Pressable
+          style={styles.overlay}
+          onPress={() => setIsOpen(prev => !prev)}
+        />
+      )}
+      <View pointerEvents="box-none" style={styles.wrapper}>
         <View
           style={
             isOpen ? { ...styles.container, ...styles.open } : styles.container
           }
         >
           <Text style={styles.text}>Save tape</Text>
-          <Text style={styles.text} onPress={clearTape}>
+          <Text style={styles.text} onPress={handleClear}>
             Clear tape
           </Text>
           <Text style={styles.text}>Tax rate</Text>

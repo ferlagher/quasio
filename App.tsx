@@ -1,5 +1,6 @@
-import { CalcProvider } from "./context/CalcContext";
 import { Navigator } from "./navigation";
+import { Provider } from "react-redux";
+import store from "./store";
 import { useFonts } from "expo-font";
 
 export default function App() {
@@ -15,8 +16,8 @@ export default function App() {
   }
 
   return (
-    <CalcProvider>
+    <Provider store={store}>
       <Navigator />
-    </CalcProvider>
+    </Provider>
   );
 }

@@ -1,21 +1,20 @@
-import React, { useContext } from "react";
-
 import CalcButton from "../CalcButton/CalcButton";
-import { CalcContext } from "../../../context/CalcContext";
 import Display from "../Display/Display";
+import React from "react";
 import { View } from "react-native";
 import { styles } from "./styles";
+import { useCalculator } from "./useCalculator";
 
 const Calculator = () => {
   const {
     display,
-    operator,
-    setOperator,
-    setSum,
-    updateTape,
-    updateDisplay,
-    clearAll,
-  } = useContext(CalcContext);
+    handleNumpadPress,
+    handleChangeSignPress,
+    handleBackspacePress,
+    handleClearPress,
+    handleClearAllPress,
+    handleOperatorPress,
+  } = useCalculator();
 
   return (
     <View style={styles.calculator}>
@@ -29,39 +28,39 @@ const Calculator = () => {
 
         <CalcButton label="TAX+" onPress={() => {}} type="small" />
         <CalcButton label="TAX-" onPress={() => {}} type="small" />
-        <CalcButton label="+/-" onPress={() => {}} type="small" />
+        <CalcButton label="+/-" onPress={handleChangeSignPress} type="small" />
         <CalcButton label="%" onPress={() => {}} type="small" />
         <CalcButton label="MD/MU" onPress={() => {}} type="small" />
 
-        <CalcButton label="CA" onPress={clearAll} type="minus" />
-        <CalcButton label="C" onPress={updateDisplay} />
-        <CalcButton label="▻" onPress={updateDisplay} />
-        <CalcButton label="M♢" onPress={() => {}} />
-        <CalcButton label="M*" onPress={() => {}} />
+        <CalcButton label="CA" onPress={handleClearAllPress} type="minus" />
+        <CalcButton label="C" onPress={handleClearPress} />
+        <CalcButton label="▻" onPress={handleBackspacePress} />
+        <CalcButton label="M♢" onPress={handleOperatorPress} />
+        <CalcButton label="M*" onPress={handleOperatorPress} />
 
-        <CalcButton label="7" onPress={updateDisplay} />
-        <CalcButton label="8" onPress={updateDisplay} />
-        <CalcButton label="9" onPress={updateDisplay} />
-        <CalcButton label="M+" onPress={() => {}} />
-        <CalcButton label="M-" onPress={() => {}} />
+        <CalcButton label="7" onPress={handleNumpadPress} />
+        <CalcButton label="8" onPress={handleNumpadPress} />
+        <CalcButton label="9" onPress={handleNumpadPress} />
+        <CalcButton label="M+" onPress={handleOperatorPress} />
+        <CalcButton label="M-" onPress={handleOperatorPress} />
 
-        <CalcButton label="6" onPress={updateDisplay} />
-        <CalcButton label="5" onPress={updateDisplay} />
-        <CalcButton label="4" onPress={updateDisplay} />
-        <CalcButton label="-" onPress={setOperator} type="minus" />
-        <CalcButton label="÷" onPress={setOperator} />
+        <CalcButton label="6" onPress={handleNumpadPress} />
+        <CalcButton label="5" onPress={handleNumpadPress} />
+        <CalcButton label="4" onPress={handleNumpadPress} />
+        <CalcButton label="-" onPress={handleOperatorPress} type="minus" />
+        <CalcButton label="÷" onPress={handleOperatorPress} />
 
-        <CalcButton label="3" onPress={updateDisplay} />
-        <CalcButton label="2" onPress={updateDisplay} />
-        <CalcButton label="1" onPress={updateDisplay} />
-        <CalcButton label="⩲" onPress={setOperator} type="plus" />
-        <CalcButton label="×" onPress={setOperator} />
+        <CalcButton label="3" onPress={handleNumpadPress} />
+        <CalcButton label="2" onPress={handleNumpadPress} />
+        <CalcButton label="1" onPress={handleNumpadPress} />
+        <CalcButton label="⩲" onPress={handleOperatorPress} type="plus" />
+        <CalcButton label="×" onPress={handleOperatorPress} />
 
-        <CalcButton label="0" onPress={updateDisplay} />
-        <CalcButton label="00" onPress={updateDisplay} />
-        <CalcButton label="." onPress={updateDisplay} />
-        <CalcButton label="*" onPress={setOperator} />
-        <CalcButton label="G*" onPress={setOperator} />
+        <CalcButton label="0" onPress={handleNumpadPress} />
+        <CalcButton label="00" onPress={handleNumpadPress} />
+        <CalcButton label="." onPress={handleNumpadPress} />
+        <CalcButton label="*" onPress={handleOperatorPress} />
+        <CalcButton label="G*" onPress={handleOperatorPress} />
       </View>
     </View>
   );

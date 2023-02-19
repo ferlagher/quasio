@@ -5,15 +5,13 @@ export const styles = StyleSheet.create({
   tape: {
     flex: 1,
     paddingHorizontal: theme.SPACE_LG,
-    overflow: "scroll",
     marginTop: theme.SPACE_LG,
   },
   list: {
+    overflow: "scroll",
     marginBottom: theme.SPACE_MD,
-    overflow: "visible",
   },
   listContent: {
-    flex: 1,
     justifyContent: "flex-end",
   },
 });

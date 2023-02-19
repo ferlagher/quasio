@@ -4,8 +4,6 @@ import React from "react";
 import { styles } from "./styles";
 
 const Display = ({ value = "0" }) => {
-  value = value.replace("*", "");
-
   return (
     <View style={styles.display}>
       <Text style={styles.textOn}>{value}</Text>

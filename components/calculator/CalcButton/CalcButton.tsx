@@ -1,12 +1,17 @@
-import { CalcButtonProps, Operator } from "../../../types/propTypes";
 import { Pressable, Text } from "react-native";
 
+import { CalcButtonProps } from "../../../types/propTypes";
 import React from "react";
+import { setPrevButton } from "../../../store";
 import { styles } from "./styles";
+import { useDispatch } from "react-redux";
 
 const CalcButton = ({ label, type, onPress }: CalcButtonProps) => {
+  const dispatch = useDispatch();
+
   const handlePress = () => {
-    onPress(label === "⩲" ? "+" : label);
+    onPress(label);
+    dispatch(setPrevButton(label));
   };
 
   return (

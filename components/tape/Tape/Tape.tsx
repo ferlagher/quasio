@@ -1,12 +1,13 @@
 import { FlatList, View } from "react-native";
-import React, { useContext, useRef } from "react";
+import React, { useRef } from "react";
 
-import { CalcContext } from "../../../context/CalcContext";
 import ListElement from "../ListElement/ListElement";
+import { RootState } from "../../../store";
 import { styles } from "./styles";
+import { useSelector } from "react-redux";
 
 const Tape = () => {
-  const { tape } = useContext(CalcContext);
+  const { tape } = useSelector((state: RootState) => state.tape);
   const tapeRef = useRef<FlatList>(null);
   return (
     <View style={styles.tape}>
@@ -16,7 +17,7 @@ const Tape = () => {
         style={styles.list}
         contentContainerStyle={styles.listContent}
         keyExtractor={item => item.id}
-        renderItem={({ item }) => <ListElement item={item} />}
+        renderItem={({ item }) => <ListElement item={item} key={item.id} />}
         onContentSizeChange={() =>
           tapeRef.current?.scrollToEnd({ animated: true })
         }

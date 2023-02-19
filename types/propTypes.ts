@@ -25,7 +25,8 @@ export type Operator =
   | "="
   | "×"
   | "*"
-  | "G*";
+  | "G*"
+  | "·";
 
 export type Numpad =
   | ""
@@ -42,8 +43,6 @@ export type Numpad =
   | "00"
   | ".";
 
-export type Views = "calculator" | "manual";
-
 export type TapeItem = {
   id: string;
   number: number;
@@ -51,34 +50,8 @@ export type TapeItem = {
   note?: string;
 };
 
-export type CalcData = {
-  display: string;
-  operator: Operator;
-  setOperator: React.Dispatch<React.SetStateAction<Operator>>;
-  updateTape: (number: number, operator: Operator) => void;
-  clearTape: () => void;
-  updateDisplay: (value: string) => void;
-};
-
-export type CalcContextValues = {
-  tape: TapeItem[];
-  display: string;
-  operator: Operator;
-  setDisplay: React.Dispatch<React.SetStateAction<string>>;
-  setOperator: React.Dispatch<React.SetStateAction<Operator>>;
-  setSum: React.Dispatch<React.SetStateAction<number[]>>;
-  updateTape(operator: Operator, number: number): void;
-  updateDisplay: (value: string) => void;
-  clearAll: () => void;
-  clearTape: () => void;
-};
-
-export type CalcContextProps = {
-  children: React.ReactNode;
-};
-
 export type CalcButtonProps = {
-  label: Operator | string;
+  label: Operator | Numpad;
   type?: "small" | "minus" | "plus";
   onPress: (args: any) => void;
 };

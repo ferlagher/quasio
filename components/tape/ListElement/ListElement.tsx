@@ -10,8 +10,8 @@ const ListElement = ({ item }: ListElementProps) => {
   const formatedNumber = numeral(number).format("0,0.00");
   const [listNote, setListNote] = useState(note);
   const inputRef = useRef<TextInput>(null);
-  const isNegative = number < 0 || operator === "-";
-  const isSeparator = ["CA", "#"].includes(operator);
+  const isNegative = number < 0 || ["-", "M-"].includes(operator);
+  const isSeparator = ["CA", "·", "#"].includes(operator);
   const isTotal = ["*", "="].includes(operator);
 
   return (
@@ -40,6 +40,8 @@ const ListElement = ({ item }: ListElementProps) => {
       >
         {operator === "CA"
           ? "····0····   "
+          : operator === "·"
+          ? "···················"
           : operator === "#"
           ? numeral(number).format("000").padEnd(16, "·") + "   "
           : formatedNumber + " " + operator.padStart(2, " ")}
