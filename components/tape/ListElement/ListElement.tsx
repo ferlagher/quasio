@@ -1,18 +1,25 @@
 import { Pressable, Text, TextInput } from "react-native";
-import React, { memo, useRef, useState } from "react";
+import React, { memo, useEffect, useRef, useState } from "react";
 
 import { ListElementProps } from "../../../types/propTypes";
 import numeral from "numeral";
 import { styles } from "./styles";
+import { updateNote } from "../../../store";
+import { useDispatch } from "react-redux";
 
 const ListElement = ({ item }: ListElementProps) => {
-  const { number, operator, note } = item;
+  const { id, number, operator, note } = item;
   const formatedNumber = numeral(number).format("0,0.00");
   const [listNote, setListNote] = useState(note);
   const inputRef = useRef<TextInput>(null);
   const isNegative = number < 0 || ["-", "M-"].includes(operator);
   const isSeparator = ["CA", "·", "#"].includes(operator);
   const isTotal = ["*", "="].includes(operator);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(updateNote(id, listNote));
+  }, [listNote]);
 
   return (
     <Pressable

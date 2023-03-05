@@ -1,6 +1,14 @@
+import { Operator, TapeItem } from "../../types/propTypes";
+
 import { ActionType } from "../../types/actionTypes";
 import { MAX_VALUE } from "../../constants/maxVaules";
-import { Operator } from "../../types/propTypes";
+
+export const setTape = (tape: TapeItem[]) => {
+  return {
+    type: ActionType.SET_TAPE,
+    payload: tape,
+  };
+};
 
 export const updateTape = (
   operator: Operator,
@@ -13,6 +21,11 @@ export const updateTape = (
     payload: { number, operator, note },
   };
 };
+
+export const updateNote = (id: TapeItem["id"], note: TapeItem["note"]) => ({
+  type: ActionType.UPDATE_NOTE,
+  payload: { id, note },
+});
 
 export const clearTape = () => ({
   type: ActionType.CLEAR_TAPE,

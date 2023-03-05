@@ -8,7 +8,9 @@ import { useSelector } from "react-redux";
 
 const Tape = () => {
   const { tape } = useSelector((state: RootState) => state.tape);
+  console.log("🚀 ~ file: Tape.tsx:11 ~ Tape ~ tape:", tape);
   const tapeRef = useRef<FlatList>(null);
+
   return (
     <View style={styles.tape}>
       <FlatList

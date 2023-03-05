@@ -63,4 +63,6 @@ export type ListElementProps = {
 export type RootStackParamList = {
   Calculator: undefined;
   Manual: undefined;
+  QRScanner: undefined;
+  QRGenerator: undefined;
 };

@@ -16,7 +16,9 @@ export enum ActionType {
   CLEAR_GRAND_SUM = "CLEAR_GRAND_SUM",
   CLEAR_MEMORY = "CLEAR_MEMORY",
   SET_PREV_BUTTON = "SET_PREV_BUTTON",
+  SET_TAPE = "SET_TAPE",
   UPDATE_TAPE = "UPDATE_TAPE",
+  UPDATE_NOTE = "UPDATE_NOTE",
   CLEAR_TAPE = "CLEAR_TAPE",
 }
 
@@ -84,9 +86,19 @@ type actionSetPrevButton = {
   payload: Numpad | Operator;
 };
 
+type actionSetTape = {
+  type: ActionType.SET_TAPE;
+  payload: TapeItem[];
+};
+
 type actionUpdateTape = {
   type: ActionType.UPDATE_TAPE;
   payload: Omit<TapeItem, "id">;
+};
+
+type actionUpdateNote = {
+  type: ActionType.UPDATE_NOTE;
+  payload: { id: TapeItem["id"]; note: TapeItem["note"] };
 };
 
 type actionClearTape = {
@@ -109,4 +121,8 @@ export type CalculatorAction =
   | actionClearAll
   | actionSetPrevButton;
 
-export type TapeAction = actionUpdateTape | actionClearTape;
+export type TapeAction =
+  | actionSetTape
+  | actionUpdateTape
+  | actionUpdateNote
+  | actionClearTape;

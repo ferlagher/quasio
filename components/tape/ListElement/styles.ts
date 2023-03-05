@@ -8,7 +8,6 @@ export const styles = StyleSheet.create({
   },
   note: {
     flex: 1,
-    witheSpace: "nowrap",
     overflow: "scroll",
     fontFamily: "Courier Prime Italic",
     fontSize: theme.FONT_SM,

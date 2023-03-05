@@ -32,9 +32,20 @@ const Menu = () => {
             isOpen ? { ...styles.container, ...styles.open } : styles.container
           }
         >
-          <Text style={styles.text}>Save tape</Text>
+          <Text
+            style={styles.text}
+            onPress={() => navigation.navigate("QRGenerator")}
+          >
+            Save tape
+          </Text>
           <Text style={styles.text} onPress={handleClear}>
             Clear tape
+          </Text>
+          <Text
+            style={styles.text}
+            onPress={() => navigation.navigate("QRScanner")}
+          >
+            Scan QR
           </Text>
           <Text style={styles.text}>Tax rate</Text>
           <Text style={styles.text}>Theme</Text>

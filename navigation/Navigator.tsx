@@ -1,4 +1,5 @@
 import { CalculatorScreen, ManualScreen } from "../screens";
+import { QRGenerator, QRScanner } from "../components";
 
 import { NavigationContainer } from "@react-navigation/native";
 import React from "react";
@@ -16,6 +17,8 @@ export const Navigator = () => {
       >
         <Stack.Screen name="Calculator" component={CalculatorScreen} />
         <Stack.Screen name="Manual" component={ManualScreen} />
+        <Stack.Screen name="QRScanner" component={QRScanner} />
+        <Stack.Screen name="QRGenerator" component={QRGenerator} />
       </Stack.Navigator>
     </NavigationContainer>
   );
