@@ -4,8 +4,10 @@ import {
   clearGrandSum,
   clearMemory,
   clearSum,
+  setDisplay,
   setNum1,
   setOperator,
+  setPrevButton,
   updateGrandSum,
   updateMemory,
   updateSum,
@@ -18,54 +20,73 @@ export const useCalculateTape = () => {
   const dispatch = useDispatch();
 
   const calculateTape = (tape: TapeItem[]) => {
-    let num1 = 0;
-    let operator: Operator = "";
+    let tempNum1 = 0;
+    let tempOperator: Operator = "";
+    let sum = 0;
+    let memory = 0;
+
+    dispatch(setPrevButton(""));
 
     tape.forEach(item => {
-      console.log(
-        "🚀 ~ file: useCalculateTape.ts:22 ~ calculateTape ~ num1:",
-        num1
-      );
       if (["+", "-"].includes(item.operator)) {
         const number = item.operator === "+" ? item.number : -item.number;
+
+        sum += number;
+
         dispatch(updateSum(number));
+        dispatch(setDisplay(sum.toString()));
       }
 
       if (["×", "÷"].includes(item.operator)) {
-        if (num1) {
-          num1 = operator === "×" ? num1 * item.number : num1 / item.number;
+        if (tempOperator === "×") {
+          tempNum1 *= item.number;
+        } else if (tempOperator === "÷") {
+          tempNum1 /= item.number;
         } else {
-          num1 = item.number;
+          tempNum1 = item.number;
         }
 
-        operator = item.operator;
-
-        dispatch(setNum1(num1));
-        dispatch(setOperator(operator));
+        tempOperator = item.operator;
+        dispatch(setNum1(tempNum1));
+        dispatch(setOperator(tempOperator));
+        dispatch(setDisplay(tempNum1.toString()));
       }
 
       if (item.operator === "=") {
-        num1 = 0;
-        operator = "";
-        dispatch(setNum1(num1));
-        dispatch(setOperator(operator));
+        tempNum1 = 0;
+        tempOperator = "";
+
+        dispatch(setNum1(tempNum1));
+        dispatch(setOperator(tempOperator));
+        dispatch(setDisplay(item.number.toString()));
       }
 
       if (item.operator === "*") {
+        sum = 0;
+
         dispatch(updateGrandSum(item.number));
         dispatch(clearSum());
+        dispatch(setDisplay(item.number.toString()));
       }
 
       if (item.operator === "G*") {
         dispatch(clearGrandSum());
+        dispatch(setDisplay(item.number.toString()));
       }
 
       if (["M+", "M-"].includes(item.operator)) {
         const number = item.operator === "M+" ? item.number : -item.number;
+
+        memory += number;
+
         dispatch(updateMemory(number));
+        dispatch(setDisplay(memory.toString()));
       }
 
       if (item.operator === "M*") {
+        memory = 0;
+
+        dispatch(setDisplay(item.number.toString()));
         dispatch(clearMemory());
       }
 

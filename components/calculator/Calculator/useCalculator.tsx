@@ -60,7 +60,7 @@ export const useCalculator = () => {
       const value = currentOperator === "-" ? -number : number;
       const op = currentOperator === "⩲" ? "+" : currentOperator;
 
-      if (num1 && ["×", "÷"].includes(operator)) {
+      if (["×", "÷"].includes(operator)) {
         const result = operator === "×" ? num1 * number : num1 / number;
         dispatch(updateTape("=", number));
         dispatch(updateTape(op, result));
