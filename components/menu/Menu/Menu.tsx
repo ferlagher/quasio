@@ -18,6 +18,18 @@ const Menu = () => {
     dispatch(clearAll());
   };
 
+  const handleGenerateQR = () => {
+    navigation.navigate("QRGenerator");
+  };
+
+  const handleScanQR = () => {
+    navigation.navigate("QRScanner");
+  };
+
+  const handleManual = () => {
+    navigation.navigate("Manual");
+  };
+
   return (
     <>
       {isOpen && (
@@ -32,27 +44,18 @@ const Menu = () => {
             isOpen ? { ...styles.container, ...styles.open } : styles.container
           }
         >
-          <Text
-            style={styles.text}
-            onPress={() => navigation.navigate("QRGenerator")}
-          >
-            Generate QR
-          </Text>
           <Text style={styles.text} onPress={handleClear}>
             Clear tape
           </Text>
-          <Text
-            style={styles.text}
-            onPress={() => navigation.navigate("QRScanner")}
-          >
+          <Text style={styles.text} onPress={handleGenerateQR}>
+            Generate QR
+          </Text>
+          <Text style={styles.text} onPress={handleScanQR}>
             Scan QR
           </Text>
           <Text style={styles.text}>Tax rate</Text>
           <Text style={styles.text}>Theme</Text>
-          <Text
-            style={styles.text}
-            onPress={() => navigation.navigate("Manual")}
-          >
+          <Text style={styles.text} onPress={handleManual}>
             Manual
           </Text>
         </View>
