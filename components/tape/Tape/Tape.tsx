@@ -6,18 +6,15 @@ import { useDispatch, useSelector } from "react-redux";
 import ListElement from "../ListElement/ListElement";
 import { fetchTape } from "../../../db";
 import { styles } from "./styles";
-import { useCalculateTape } from "../../../hooks";
 
 const Tape = () => {
   const { tape } = useSelector((state: RootState) => state.tape);
   const tapeRef = useRef<FlatList>(null);
   const dispatch = useDispatch();
-  const calculateTape = useCalculateTape();
 
   useEffect(() => {
     fetchTape()
       .then(res => {
-        calculateTape(res.rows._array);
         dispatch(setTape(res.rows._array));
       })
       .catch(err => {

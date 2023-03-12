@@ -1,6 +1,7 @@
 import { ActionType, CalculatorAction } from "../../types/actionTypes";
 import { Numpad, Operator } from "../../types/propTypes";
 
+import { AnyAction } from "redux";
 import { formatDisplay } from "../../logic";
 
 const initialState = {
@@ -14,7 +15,7 @@ const initialState = {
   prevButton: "" as Numpad | Operator,
 };
 
-const CalculatorReducer = (state = initialState, action: CalculatorAction) => {
+const CalculatorReducer = (state = initialState, action: AnyAction) => {
   switch (action.type) {
     case ActionType.SET_NUM1:
       return {

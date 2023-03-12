@@ -1,12 +1,13 @@
 import { ActionType, TapeAction } from "../../types/actionTypes";
 
+import { AnyAction } from "redux";
 import { TapeItem } from "../../types/propTypes";
 
 const initialState = {
   tape: [] as TapeItem[],
 };
 
-const TapeReducer = (state = initialState, action: TapeAction) => {
+const TapeReducer = (state = initialState, action: AnyAction) => {
   switch (action.type) {
     case ActionType.SET_TAPE:
       return {

@@ -3,24 +3,27 @@ import { deleteTape, insertCalculations } from "../../db";
 
 import { ActionType } from "../../types/actionTypes";
 import { MAX_VALUE } from "../../constants/maxVaules";
+import { calculateTape } from "../../logic";
 
 export const setTape = (tape: TapeItem[]) => {
-  deleteTape().catch(err => {
-    console.log("🚀 ~ file: tape.actions.ts:9 ~ err:", err.message);
-    alert("Error deleting tape in database");
-  });
+  try {
+    deleteTape();
 
-  tape.forEach(item => {
-    insertCalculations(item.number, item.operator, item.note).catch(err => {
-      console.log("🚀 ~ file: tape.actions.ts:23 ~ err:", err.message);
-      alert("Error saving calculation in database");
-    });
-  });
+    calculateTape(tape);
 
-  return {
-    type: ActionType.SET_TAPE,
-    payload: tape,
-  };
+    return {
+      type: ActionType.SET_TAPE,
+      payload: tape,
+    };
+  } catch (err) {
+    console.log("🚀 ~ file: tape.actions.ts:34 ~ err:", err);
+    alert("Error saving calculation in database");
+
+    return {
+      type: ActionType.SET_TAPE,
+      payload: [],
+    };
+  }
 };
 
 export const updateTape = (
