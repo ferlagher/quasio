@@ -1,15 +1,25 @@
 import { FlatList, View } from "react-native";
-import React, { useRef } from "react";
+import React, { useEffect, useRef } from "react";
+import { RootState, setTape } from "../../../store";
+import { useDispatch, useSelector } from "react-redux";
 
 import ListElement from "../ListElement/ListElement";
-import { RootState } from "../../../store";
+import { fetchTape } from "../../../db";
 import { styles } from "./styles";
-import { useSelector } from "react-redux";
 
 const Tape = () => {
   const { tape } = useSelector((state: RootState) => state.tape);
-  console.log("🚀 ~ file: Tape.tsx:11 ~ Tape ~ tape:", tape);
   const tapeRef = useRef<FlatList>(null);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    fetchTape()
+      .then(res => dispatch(setTape(res.rows._array)))
+      .catch(err => {
+        console.log("🚀 ~ file: Tape.tsx:19 ~ useEffect ~ err:", err);
+        alert("Error fetching tape from database");
+      });
+  }, []);
 
   return (
     <View style={styles.tape}>

@@ -66,3 +66,12 @@ export type RootStackParamList = {
   QRScanner: undefined;
   QRGenerator: undefined;
 };
+
+export type DBRes = {
+  insertId: any;
+  rows: {
+    _array: TapeItem[];
+    length: number;
+  };
+  rowsAffected: number;
+};

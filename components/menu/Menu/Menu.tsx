@@ -36,7 +36,7 @@ const Menu = () => {
             style={styles.text}
             onPress={() => navigation.navigate("QRGenerator")}
           >
-            Save tape
+            Generate QR
           </Text>
           <Text style={styles.text} onPress={handleClear}>
             Clear tape
