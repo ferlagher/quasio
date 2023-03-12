@@ -18,7 +18,7 @@ const TapeReducer = (state = initialState, action: TapeAction) => {
         ...state,
         tape: [
           ...state.tape,
-          { id: state.tape.length, ...action.payload },
+          { id: state.tape.length + 1, ...action.payload },
         ] as TapeItem[],
       };
     case ActionType.UPDATE_NOTE:

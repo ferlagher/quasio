@@ -35,7 +35,7 @@ export const QRScanner = () => {
 
       parsedData.i.forEach((id: string, index: number) => {
         newTape.push({
-          id: "qr-" + id,
+          id: id,
           number: parsedData.n[index],
           operator: parsedData.o[index],
           note: parsedData.m[index],
