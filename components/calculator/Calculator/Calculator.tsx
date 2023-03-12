@@ -13,6 +13,7 @@ const Calculator = () => {
     handleBackspacePress,
     handleClearPress,
     handleClearAllPress,
+    handleClearAllLongPress,
     handleOperatorPress,
   } = useCalculator();
 
@@ -32,7 +33,12 @@ const Calculator = () => {
         <CalcButton label="%" onPress={() => {}} type="small" />
         <CalcButton label="MD/MU" onPress={() => {}} type="small" />
 
-        <CalcButton label="CA" onPress={handleClearAllPress} type="minus" />
+        <CalcButton
+          label="CA"
+          onPress={handleClearAllPress}
+          onLongPress={handleClearAllLongPress}
+          type="minus"
+        />
         <CalcButton label="C" onPress={handleClearPress} />
         <CalcButton label="▻" onPress={handleBackspacePress} />
         <CalcButton label="M♢" onPress={handleOperatorPress} />

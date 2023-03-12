@@ -6,6 +6,7 @@ import {
   clearGrandSum,
   clearMemory,
   clearSum,
+  clearTape,
   setDisplay,
   setNum1,
   setNum2,
@@ -48,6 +49,11 @@ export const useCalculator = () => {
   const handleClearAllPress = () => {
     dispatch(clearAll());
     dispatch(updateTape("CA"));
+  };
+
+  const handleClearAllLongPress = () => {
+    dispatch(clearAll());
+    dispatch(clearTape());
   };
 
   const handleOperatorPress = (currentOperator: Operator) => {
@@ -139,6 +145,7 @@ export const useCalculator = () => {
     handleBackspacePress,
     handleClearPress,
     handleClearAllPress,
+    handleClearAllLongPress,
     handleOperatorPress,
   };
 };

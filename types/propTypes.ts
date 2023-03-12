@@ -54,6 +54,7 @@ export type CalcButtonProps = {
   label: Operator | Numpad;
   type?: "small" | "minus" | "plus";
   onPress: (args: any) => void;
+  onLongPress?: (args: any) => void;
 };
 
 export type ListElementProps = {

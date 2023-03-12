@@ -6,7 +6,7 @@ import { setPrevButton } from "../../../store";
 import { styles } from "./styles";
 import { useDispatch } from "react-redux";
 
-const CalcButton = ({ label, type, onPress }: CalcButtonProps) => {
+const CalcButton = ({ label, type, onPress, onLongPress }: CalcButtonProps) => {
   const dispatch = useDispatch();
 
   const handlePress = () => {
@@ -17,6 +17,7 @@ const CalcButton = ({ label, type, onPress }: CalcButtonProps) => {
   return (
     <Pressable
       onPress={handlePress}
+      onLongPress={onLongPress}
       style={type ? { ...styles.button, ...styles[type] } : styles.button}
     >
       <Text
