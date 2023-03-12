@@ -28,18 +28,22 @@ const Tape = () => {
 
   return (
     <View style={styles.tape}>
-      <FlatList
-        data={tape}
-        ref={tapeRef}
-        style={styles.list}
-        contentContainerStyle={styles.listContent}
-        keyExtractor={item => item.id}
-        renderItem={({ item }) => <ListElement item={item} key={item.id} />}
-        onContentSizeChange={() =>
-          tapeRef.current?.scrollToEnd({ animated: true })
-        }
-        removeClippedSubviews={false}
-      />
+      {tape.length ? (
+        <FlatList
+          data={tape}
+          ref={tapeRef}
+          style={styles.list}
+          contentContainerStyle={styles.listContent}
+          keyExtractor={item => item.id}
+          renderItem={({ item }) => <ListElement item={item} key={item.id} />}
+          onContentSizeChange={() =>
+            tapeRef.current?.scrollToEnd({ animated: true })
+          }
+          removeClippedSubviews={false}
+        />
+      ) : (
+        <></>
+      )}
     </View>
   );
 };
