@@ -100,7 +100,7 @@ export const useCalculator = () => {
       }
 
       dispatch(updateTape("#", grandSum.length + (total ? 1 : 0)));
-      dispatch(updateTape("*", grandTotal + total));
+      dispatch(updateTape(currentOperator, grandTotal + total));
       dispatch(setDisplay(grandTotal.toString()));
       dispatch(clearGrandSum());
     }

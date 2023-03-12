@@ -6,11 +6,13 @@ import { StyleSheet, Text, View } from "react-native";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { TapeItem } from "../../../types/propTypes";
 import { setTape } from "../../../store";
+import { useCalculateTape } from "../../../hooks";
 import { useDispatch } from "react-redux";
 
 export const QRScanner = () => {
   const dispatch = useDispatch();
   const navigation = useNavigation<NativeStackNavigationProp<ParamListBase>>();
+  const calculateTape = useCalculateTape();
   const [hasPermission, setHasPermission] = useState<boolean>(false);
 
   useEffect(() => {
@@ -45,7 +47,10 @@ export const QRScanner = () => {
       return newTape;
     };
 
-    dispatch(setTape(decompressTape(data)));
+    const tape = decompressTape(data);
+
+    calculateTape(tape);
+    dispatch(setTape(tape));
     navigation.navigate("Calculator");
   };
 
