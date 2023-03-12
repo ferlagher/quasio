@@ -22,6 +22,10 @@ export const useCalculateTape = () => {
     let operator: Operator = "";
 
     tape.forEach(item => {
+      console.log(
+        "🚀 ~ file: useCalculateTape.ts:22 ~ calculateTape ~ num1:",
+        num1
+      );
       if (["+", "-"].includes(item.operator)) {
         const number = item.operator === "+" ? item.number : -item.number;
         dispatch(updateSum(number));
