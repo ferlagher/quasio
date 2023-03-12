@@ -1,4 +1,6 @@
+import { Operator, TapeItem } from "../types/propTypes";
 import {
+  clearAll,
   clearGrandSum,
   clearMemory,
   clearSum,
@@ -10,26 +12,43 @@ import {
 } from "../store";
 
 import React from "react";
-import { TapeItem } from "../types/propTypes";
 import { useDispatch } from "react-redux";
 
 export const useCalculateTape = () => {
   const dispatch = useDispatch();
 
   const calculateTape = (tape: TapeItem[]) => {
+    let num1 = 0;
+    let operator: Operator = "";
+
     tape.forEach(item => {
+      console.log(
+        "🚀 ~ file: useCalculateTape.ts:22 ~ calculateTape ~ num1:",
+        num1
+      );
       if (["+", "-"].includes(item.operator)) {
         const number = item.operator === "+" ? item.number : -item.number;
         dispatch(updateSum(number));
       }
 
       if (["×", "÷"].includes(item.operator)) {
-        dispatch(setNum1(item.number));
-        dispatch(setOperator(item.operator));
+        if (num1) {
+          num1 = operator === "×" ? num1 * item.number : num1 / item.number;
+        } else {
+          num1 = item.number;
+        }
+
+        operator = item.operator;
+
+        dispatch(setNum1(num1));
+        dispatch(setOperator(operator));
       }
 
       if (item.operator === "=") {
-        dispatch(setNum1(0));
+        num1 = 0;
+        operator = "";
+        dispatch(setNum1(num1));
+        dispatch(setOperator(operator));
       }
 
       if (item.operator === "*") {
@@ -48,6 +67,10 @@ export const useCalculateTape = () => {
 
       if (item.operator === "M*") {
         dispatch(clearMemory());
+      }
+
+      if (item.operator === "CA") {
+        dispatch(clearAll());
       }
     });
   };
