@@ -61,17 +61,29 @@ export type ListElementProps = {
   item: TapeItem;
 };
 
+export type SavedTape = { id: string; date: string };
+
 export type RootStackParamList = {
   Calculator: undefined;
   Manual: undefined;
   QRScanner: undefined;
   QRGenerator: undefined;
+  SavedTapes: undefined;
 };
 
-export type DBRes = {
+export type DBCalculations = {
   insertId: any;
   rows: {
     _array: TapeItem[];
+    length: number;
+  };
+  rowsAffected: number;
+};
+
+export type DBSavedId = {
+  insertId: any;
+  rows: {
+    _array: SavedTape[];
     length: number;
   };
   rowsAffected: number;

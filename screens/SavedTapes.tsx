@@ -1,14 +1,14 @@
 import { BackButton } from "../components/shared";
-import { ManualTabs } from "../navigation";
 import React from "react";
+import { SavedTapes } from "../components";
 import { View } from "react-native";
 import { styles } from "./styles";
 
-export const ManualScreen = () => {
+export const SavedTapesScreen = () => {
   return (
     <View style={styles.container}>
       <BackButton />
-      <ManualTabs />
+      <SavedTapes />
     </View>
   );
 };

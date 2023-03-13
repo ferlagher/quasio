@@ -1,10 +1,11 @@
-import { ActionType, TapeAction } from "../../types/actionTypes";
+import { SavedTape, TapeItem } from "../../types/propTypes";
 
+import { ActionType } from "../../types/actionTypes";
 import { AnyAction } from "redux";
-import { TapeItem } from "../../types/propTypes";
 
 const initialState = {
   tape: [] as TapeItem[],
+  savedTapes: [] as SavedTape[],
 };
 
 const TapeReducer = (state = initialState, action: AnyAction) => {
@@ -34,6 +35,11 @@ const TapeReducer = (state = initialState, action: AnyAction) => {
       return {
         ...state,
         tape: [] as TapeItem[],
+      };
+    case ActionType.SET_SAVED_TAPES:
+      return {
+        ...state,
+        savedTapes: action.payload as SavedTape[],
       };
     default:
       return state;

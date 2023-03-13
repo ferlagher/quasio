@@ -20,6 +20,7 @@ export enum ActionType {
   UPDATE_TAPE = "UPDATE_TAPE",
   UPDATE_NOTE = "UPDATE_NOTE",
   CLEAR_TAPE = "CLEAR_TAPE",
+  SET_SAVED_TAPES = "SET_SAVED_TAPES",
 }
 
 type actionSetNumber = {
@@ -105,6 +106,11 @@ type actionClearTape = {
   type: ActionType.CLEAR_TAPE;
 };
 
+type actionSetSavedTapes = {
+  type: ActionType.SET_SAVED_TAPES;
+  payload: TapeItem[][];
+};
+
 export type CalculatorAction =
   | actionSetNumber
   | actionSetOperator
@@ -125,4 +131,5 @@ export type TapeAction =
   | actionSetTape
   | actionUpdateTape
   | actionUpdateNote
-  | actionClearTape;
+  | actionClearTape
+  | actionSetSavedTapes;

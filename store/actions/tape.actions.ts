@@ -1,29 +1,32 @@
 import { Operator, TapeItem } from "../../types/propTypes";
-import { deleteTape, insertCalculations } from "../../db";
+import {
+  deleteTape,
+  fetchSavedIds,
+  insertCalculations,
+  insertSavedId,
+} from "../../db";
 
+import { API_URL } from "../../constants/database";
 import { ActionType } from "../../types/actionTypes";
 import { MAX_VALUE } from "../../constants/maxVaules";
 import { calculateTape } from "../../logic";
 
 export const setTape = (tape: TapeItem[]) => {
-  try {
-    deleteTape();
+  return async (dispatch: any) => {
+    try {
+      deleteTape();
 
-    calculateTape(tape);
+      calculateTape(tape);
 
-    return {
-      type: ActionType.SET_TAPE,
-      payload: tape,
-    };
-  } catch (err) {
-    console.log("🚀 ~ file: tape.actions.ts:34 ~ err:", err);
-    alert("Error saving calculation in database");
-
-    return {
-      type: ActionType.SET_TAPE,
-      payload: [],
-    };
-  }
+      dispatch({
+        type: ActionType.SET_TAPE,
+        payload: tape,
+      });
+    } catch (err) {
+      console.log("🚀 ~ file: tape.actions.ts:34 ~ err:", err);
+      alert("Error saving calculation in database");
+    }
+  };
 };
 
 export const updateTape = (
@@ -53,4 +56,43 @@ export const clearTape = () => {
     alert("Error deleting tape in database");
   });
   return { type: ActionType.CLEAR_TAPE };
+};
+
+export const saveTape = (tape: TapeItem[]) => {
+  return async () => {
+    try {
+      const res = await fetch(`${API_URL}tapes.json`, {
+        method: "POST",
+        headers: {
+          "Content-type": "application/json; charset=UTF-8",
+        },
+        body: JSON.stringify(tape),
+      });
+
+      const data = await res.json();
+      const date = new Date().toLocaleDateString();
+
+      await insertSavedId(data.name, date);
+      alert("Tape saved in cloud");
+    } catch (err) {
+      console.log("🚀 ~ file: tape.actions.ts:34 ~ err:", err);
+      alert("Error saving tape in cloud");
+    }
+  };
+};
+
+export const setSavedTapes = () => {
+  return async (dispatch: any) => {
+    try {
+      const res = await (await fetchSavedIds()).rows._array;
+
+      dispatch({
+        type: ActionType.SET_SAVED_TAPES,
+        payload: res,
+      });
+    } catch (err) {
+      console.log("🚀 ~ file: tape.actions.ts:83 ~ err:", err);
+      alert("Error retrieving tapes from cloud");
+    }
+  };
 };
