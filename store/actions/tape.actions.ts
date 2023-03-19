@@ -1,22 +1,14 @@
 import { Operator, TapeItem } from "../../types/propTypes";
-import {
-  deleteTape,
-  fetchSavedIds,
-  insertCalculations,
-  insertSavedId,
-} from "../../db";
+import { deleteTape, fetchSavedIds, insertCalculations, insertSavedId } from "../../db";
 
 import { API_URL } from "../../constants/database";
 import { ActionType } from "../../types/actionTypes";
 import { MAX_VALUE } from "../../constants/maxVaules";
-import { calculateTape } from "../../logic";
 
 export const setTape = (tape: TapeItem[]) => {
   return async (dispatch: any) => {
     try {
       deleteTape();
-
-      calculateTape(tape);
 
       dispatch({
         type: ActionType.SET_TAPE,
@@ -29,11 +21,7 @@ export const setTape = (tape: TapeItem[]) => {
   };
 };
 
-export const updateTape = (
-  operator: Operator,
-  number: number = 0,
-  note?: string
-) => {
+export const updateTape = (operator: Operator, number: number = 0, note?: string) => {
   number = Math.min(number, MAX_VALUE);
   insertCalculations(number, operator, note).catch(err => {
     console.log("🚀 ~ file: tape.actions.ts:23 ~ err:", err.message);

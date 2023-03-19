@@ -5,6 +5,7 @@ import { StyleSheet, Text, View } from "react-native";
 
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { TapeItem } from "../../../types/propTypes";
+import { calculateTape } from "../../../logic";
 import { setTape } from "../../../store";
 import { styles } from "./styles";
 import { useDispatch } from "react-redux";
@@ -47,6 +48,7 @@ export const QRScanner = () => {
     const tape = decompressTape(data);
 
     dispatch(setTape(tape));
+    calculateTape(tape);
     navigation.navigate("Calculator");
   };
 

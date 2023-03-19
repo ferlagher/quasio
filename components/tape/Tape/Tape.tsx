@@ -4,6 +4,7 @@ import { RootState, setTape } from "../../../store";
 import { useDispatch, useSelector } from "react-redux";
 
 import ListElement from "../ListElement/ListElement";
+import { calculateTape } from "../../../logic";
 import { fetchTape } from "../../../db";
 import { styles } from "./styles";
 
@@ -16,6 +17,7 @@ const Tape = () => {
     fetchTape()
       .then(res => {
         dispatch(setTape(res.rows._array));
+        calculateTape(res.rows._array);
       })
       .catch(err => {
         console.log("🚀 ~ file: Tape.tsx:19 ~ useEffect ~ err:", err);
@@ -33,9 +35,7 @@ const Tape = () => {
           contentContainerStyle={styles.listContent}
           keyExtractor={item => item.id}
           renderItem={({ item }) => <ListElement item={item} key={item.id} />}
-          onContentSizeChange={() =>
-            tapeRef.current?.scrollToEnd({ animated: true })
-          }
+          onContentSizeChange={() => tapeRef.current?.scrollToEnd({ animated: true })}
           removeClippedSubviews={false}
         />
       ) : (

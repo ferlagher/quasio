@@ -1,3 +1,5 @@
+import type {} from "redux-thunk/extend-redux";
+
 import { applyMiddleware, combineReducers, createStore } from "redux";
 
 import CalculatorReducer from "./reducers/calculator.reducer";
