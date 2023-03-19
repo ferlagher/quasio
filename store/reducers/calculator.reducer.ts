@@ -1,6 +1,6 @@
-import { ActionType, CalculatorAction } from "../../types/actionTypes";
 import { Numpad, Operator } from "../../types/propTypes";
 
+import { ActionType } from "../../types/actionTypes";
 import { AnyAction } from "redux";
 import { formatDisplay } from "../../logic";
 

@@ -19,7 +19,6 @@ import {
 import { useDispatch, useSelector } from "react-redux";
 
 import { Operator } from "../../../types/propTypes";
-import React from "react";
 import numeral from "numeral";
 
 export const useCalculator = () => {

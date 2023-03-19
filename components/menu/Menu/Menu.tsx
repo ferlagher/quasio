@@ -1,7 +1,7 @@
 import { ParamListBase, useNavigation } from "@react-navigation/native";
 import { Pressable, Text, View } from "react-native";
 import React, { useCallback, useState } from "react";
-import { RootState, clearAll, clearTape, loadTape, saveTape, setSavedTapes } from "../../../store";
+import { RootState, clearAll, clearTape, saveTape, setSavedTapes } from "../../../store";
 import { useDispatch, useSelector } from "react-redux";
 
 import { MenuButton } from "../MenuButton/MenuButton";

@@ -1,6 +1,6 @@
 import * as SQLite from "expo-sqlite";
 
-import { DBCalculations, DBRes, DBSavedId } from "../types/propTypes";
+import { DBCalculations, DBSavedId } from "../types/propTypes";
 
 const db = SQLite.openDatabase("calculations.db");
 
@@ -84,7 +84,7 @@ export const fetchTape = () => {
         `SELECT * FROM calculations;`,
         [],
         (_, result) => {
-          resolve(result as DBRes);
+          resolve(result as DBCalculations);
         },
         (_, err) => {
           reject(err);
@@ -101,7 +101,7 @@ export const fetchSavedIds = () => {
         `SELECT * FROM saved_tapes;`,
         [],
         (_, result) => {
-          resolve(result as DBRes);
+          resolve(result as DBSavedId);
         },
         (_, err) => {
           reject(err);
