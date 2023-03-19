@@ -6,6 +6,7 @@ import { StyleSheet, Text, View } from "react-native";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { TapeItem } from "../../../types/propTypes";
 import { setTape } from "../../../store";
+import { styles } from "./styles";
 import { useDispatch } from "react-redux";
 
 export const QRScanner = () => {
@@ -27,9 +28,7 @@ export const QRScanner = () => {
       Object.entries(parsedData).forEach(([key, value]) => {
         parsedData[key] = (value as string).split(",");
         if (key === "n") {
-          parsedData[key] = parsedData[key].map((number: string) =>
-            Number(number)
-          );
+          parsedData[key] = parsedData[key].map((number: string) => Number(number));
         }
       });
 
@@ -56,18 +55,7 @@ export const QRScanner = () => {
   }
 
   return (
-    <View
-      style={{
-        //temporal styles
-        flex: 1,
-        maxHeight: "100%",
-        flexDirection: "column",
-        alignItems: "center",
-        justifyContent: "center",
-        backgroundColor: "#404040",
-        paddingTop: 10,
-      }}
-    >
+    <View style={styles.container}>
       <BarCodeScanner
         onBarCodeScanned={handleBarCodeScanned}
         style={StyleSheet.absoluteFillObject}

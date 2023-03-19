@@ -4,8 +4,8 @@ import {
   clearGrandSum,
   clearMemory,
   clearSum,
+  setAuxNumber,
   setDisplay,
-  setNum1,
   setOperator,
   setPrevButton,
   updateGrandSum,
@@ -19,7 +19,7 @@ import store from "../store";
 export const calculateTape = (tape: TapeItem[]) => {
   const { dispatch } = store;
 
-  let tempNum1 = 0;
+  let tempAuxNumber = 0;
   let tempOperator: Operator = "";
   let sum = 0;
   let memory = 0;
@@ -43,24 +43,24 @@ export const calculateTape = (tape: TapeItem[]) => {
 
     if (["×", "÷"].includes(item.operator)) {
       if (tempOperator === "×") {
-        tempNum1 *= item.number;
+        tempAuxNumber *= item.number;
       } else if (tempOperator === "÷") {
-        tempNum1 /= item.number;
+        tempAuxNumber /= item.number;
       } else {
-        tempNum1 = item.number;
+        tempAuxNumber = item.number;
       }
 
       tempOperator = item.operator;
-      dispatch(setNum1(tempNum1));
+      dispatch(setAuxNumber(tempAuxNumber));
       dispatch(setOperator(tempOperator));
-      dispatch(setDisplay(tempNum1.toString()));
+      dispatch(setDisplay(tempAuxNumber.toString()));
     }
 
     if (item.operator === "=") {
-      tempNum1 = 0;
+      tempAuxNumber = 0;
       tempOperator = "";
 
-      dispatch(setNum1(tempNum1));
+      dispatch(setAuxNumber(tempAuxNumber));
       dispatch(setOperator(tempOperator));
       dispatch(setDisplay(item.number.toString()));
     }

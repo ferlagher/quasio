@@ -1,14 +1,9 @@
-import {
-  ManualBasic,
-  ManualCost,
-  ManualMemory,
-  ManualPercentage,
-} from "../components";
+import { ManualBasic, ManualMemory, ManualPercentage } from "../components";
 
 import { Icons } from "../components/shared";
 import React from "react";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import { styles } from "./styles";
+import { styles } from "../navigation/styles";
 import theme from "../constants/themes/darkTheme";
 
 const Tab = createBottomTabNavigator();
@@ -43,13 +38,6 @@ export const ManualTabs = () => {
         component={ManualPercentage}
         options={{
           tabBarIcon: () => Icons.Percent,
-        }}
-      />
-      <Tab.Screen
-        name="Cost"
-        component={ManualCost}
-        options={{
-          tabBarIcon: () => Icons.Cost,
         }}
       />
     </Tab.Navigator>

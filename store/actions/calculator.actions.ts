@@ -3,13 +3,8 @@ import { Numpad, Operator } from "../../types/propTypes";
 import { ActionType } from "../../types/actionTypes";
 import { MAX_VALUE } from "../../constants/maxVaules";
 
-export const setNum1 = (num: number) => ({
+export const setAuxNumber = (num: number) => ({
   type: ActionType.SET_NUM1,
-  payload: Math.min(num, MAX_VALUE),
-});
-
-export const setNum2 = (num: number) => ({
-  type: ActionType.SET_NUM2,
   payload: Math.min(num, MAX_VALUE),
 });
 

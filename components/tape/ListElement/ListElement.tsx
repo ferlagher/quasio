@@ -13,7 +13,7 @@ const ListElement = ({ item }: ListElementProps) => {
   const [listNote, setListNote] = useState(note);
   const inputRef = useRef<TextInput>(null);
   const isNegative = number < 0 || ["-", "M-"].includes(operator);
-  const isSeparator = ["CA", "·", "#"].includes(operator);
+  const isSeparator = ["CA", "···", "··"].includes(operator);
   const isTotal = ["*", "="].includes(operator);
   const dispatch = useDispatch();
 
@@ -23,34 +23,24 @@ const ListElement = ({ item }: ListElementProps) => {
 
   return (
     <Pressable
-      style={
-        isTotal
-          ? { ...styles.listElement, ...styles.total }
-          : styles.listElement
-      }
+      style={isTotal ? { ...styles.listElement, ...styles.total } : styles.listElement}
       onPress={() => inputRef?.current?.focus()}
     >
       {!isSeparator && (
         <TextInput
           ref={inputRef}
-          style={
-            isNegative ? { ...styles.note, ...styles.negative } : styles.note
-          }
+          style={isNegative ? { ...styles.note, ...styles.negative } : styles.note}
           value={listNote}
           onChangeText={text => setListNote(text)}
         />
       )}
-      <Text
-        style={
-          isNegative ? { ...styles.number, ...styles.negative } : styles.number
-        }
-      >
+      <Text style={isNegative ? { ...styles.number, ...styles.negative } : styles.number}>
         {operator === "CA"
           ? "····0····   "
-          : operator === "·"
+          : operator === "···"
           ? "···················"
-          : operator === "#"
-          ? numeral(number).format("000").padEnd(16, "·") + "   "
+          : operator === "··"
+          ? numeral(number).format("000").padEnd(16, "···") + "   "
           : formatedNumber + " " + operator.padStart(2, " ")}
       </Text>
     </Pressable>

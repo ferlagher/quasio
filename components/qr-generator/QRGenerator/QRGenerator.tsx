@@ -1,14 +1,24 @@
+import { Text, View } from "react-native";
+
 import QRCode from "react-native-qrcode-svg";
 import React from "react";
 import { RootState } from "../../../store";
-import { View } from "react-native";
+import { TapeItem } from "../../../types/propTypes";
+import { styles } from "./styles";
 import { useSelector } from "react-redux";
+
+type QRValue = {
+  i: string;
+  n: string;
+  o: string;
+  m: string;
+};
 
 export const QRGenerator = () => {
   const { tape } = useSelector((state: RootState) => state.tape);
 
   const value = tape.reduce(
-    (obj, item) => {
+    (obj: QRValue, item: TapeItem) => {
       if (!obj.i) {
         obj.i = item.id;
         obj.n = item.number.toString();
@@ -27,19 +37,9 @@ export const QRGenerator = () => {
   );
 
   return (
-    <View
-      style={{
-        //temporal styles
-        flex: 1,
-        maxHeight: "100%",
-        flexDirection: "column",
-        alignItems: "center",
-        justifyContent: "center",
-        backgroundColor: "#404040",
-        paddingTop: 10,
-      }}
-    >
-      <QRCode value={JSON.stringify(value)} />
+    <View style={styles.container}>
+      <Text style={styles.title}>Your QR code:</Text>
+      <QRCode size={200} quietZone={5} value={JSON.stringify(value)} />
     </View>
   );
 };

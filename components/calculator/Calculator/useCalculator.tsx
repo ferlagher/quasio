@@ -7,9 +7,8 @@ import {
   clearMemory,
   clearSum,
   clearTape,
+  setAuxNumber,
   setDisplay,
-  setNum1,
-  setNum2,
   setOperator,
   updateDisplay,
   updateGrandSum,
@@ -25,7 +24,7 @@ import numeral from "numeral";
 
 export const useCalculator = () => {
   const dispatch = useDispatch();
-  const { display, num1, operator, sum, grandSum, memory } = useSelector(
+  const { display, auxNumber, operator, sum, grandSum, memory } = useSelector(
     (state: RootState) => state.calculator
   );
 
@@ -56,86 +55,156 @@ export const useCalculator = () => {
     dispatch(clearTape());
   };
 
-  const handleOperatorPress = (currentOperator: Operator) => {
+  const handleSum = (currentOperator: Operator) => {
     const number = numeral(display).value();
-    const total = sum.reduce((acc, curr) => acc + curr, 0);
-    const grandTotal = grandSum.reduce((acc, curr) => acc + curr, 0);
-    const memoryTotal = memory.reduce((acc, curr) => acc + curr, 0);
-
-    if (number && ["⩲", "-"].includes(currentOperator)) {
+    if (number) {
       const value = currentOperator === "-" ? -number : number;
       const op = currentOperator === "⩲" ? "+" : currentOperator;
 
       if (["×", "÷"].includes(operator)) {
-        const result = operator === "×" ? num1 * number : num1 / number;
+        const result = operator === "×" ? auxNumber * number : auxNumber / number;
         dispatch(updateTape("=", number));
         dispatch(updateTape(op, result));
         dispatch(updateSum(op === "-" ? -result : result));
         dispatch(setDisplay((op === "-" ? -result : result).toString()));
-        dispatch(setNum1(0));
+        dispatch(setAuxNumber(0));
       } else {
+        const total = sum.reduce((acc: number, curr: number) => acc + curr, 0);
+
         dispatch(updateSum(value));
         dispatch(updateTape(op, number));
         dispatch(setDisplay((total + value).toString()));
       }
     }
 
-    if (number && ["×", "÷"].includes(currentOperator)) {
-      if (num1) {
-        const result = operator === "×" ? num1 * number : num1 / number;
-        dispatch(setNum1(result));
+    dispatch(setOperator(currentOperator));
+  };
+
+  const handleMultiplication = (currentOperator: Operator) => {
+    const number = numeral(display).value();
+
+    if (number) {
+      if (auxNumber) {
+        const result = operator === "×" ? auxNumber * number : auxNumber / number;
+        dispatch(setAuxNumber(result));
         dispatch(updateTape(currentOperator, number));
         dispatch(setDisplay(result.toString()));
       } else {
-        dispatch(setNum1(number));
+        dispatch(setAuxNumber(number));
         dispatch(updateTape(currentOperator, number));
       }
     }
 
-    if (currentOperator === "*" && sum.length) {
-      dispatch(updateTape("#", sum.length));
-      dispatch(updateTape(currentOperator, total));
+    dispatch(setOperator(currentOperator));
+  };
+
+  const handleTotal = () => {
+    if (sum.length) {
+      const total = sum.reduce((acc: number, curr: number) => acc + curr, 0);
+
+      dispatch(updateTape("··", sum.length));
+      dispatch(updateTape("*", total));
       dispatch(updateGrandSum(total));
       dispatch(setDisplay(total.toString()));
       dispatch(clearSum());
     }
 
-    if (currentOperator === "G*" && (sum.length || grandSum.length)) {
+    dispatch(setOperator("*"));
+  };
+
+  const handleGrandTotal = () => {
+    if (sum.length || grandSum.length) {
+      const total = sum.reduce((acc: number, curr: number) => acc + curr, 0);
+      const grandTotal = grandSum.reduce((acc: number, curr: number) => acc + curr, 0);
+
       if (sum.length) {
-        handleOperatorPress("*");
+        handleTotal();
       }
 
-      dispatch(updateTape("#", grandSum.length + (total ? 1 : 0)));
-      dispatch(updateTape(currentOperator, grandTotal + total));
+      dispatch(updateTape("··", grandSum.length + (total ? 1 : 0)));
+      dispatch(updateTape("G*", grandTotal + total));
       dispatch(setDisplay(grandTotal.toString()));
       dispatch(clearGrandSum());
     }
 
-    if (number && ["M+", "M-"].includes(currentOperator)) {
-      const result = operator === "×" ? num1 * number : num1 / number;
+    dispatch(setOperator("G*"));
+  };
+
+  const handleMemorySum = (currentOperator: Operator) => {
+    const number = numeral(display).value();
+
+    if (number) {
+      const result = operator === "×" ? auxNumber * number : auxNumber / number;
 
       dispatch(updateTape("=", number));
       dispatch(updateTape(currentOperator, result));
       dispatch(updateMemory(currentOperator === "M-" ? -result : result));
-      dispatch(
-        setDisplay((currentOperator === "M-" ? -result : result).toString())
-      );
-      dispatch(setNum1(0));
-    }
-
-    if (currentOperator === "M♢" && memory.length) {
-      dispatch(updateTape("#", memory.length));
-      dispatch(updateTape(currentOperator, memoryTotal));
-      dispatch(setDisplay(memoryTotal.toString()));
-    }
-
-    if (currentOperator === "M*" && memory.length) {
-      handleOperatorPress("M♢");
-      dispatch(updateTape("·"));
-      dispatch(clearMemory());
+      dispatch(setDisplay((currentOperator === "M-" ? -result : result).toString()));
+      dispatch(setAuxNumber(0));
     }
 
     dispatch(setOperator(currentOperator));
+  };
+
+  const handleMemoryTotal = (currentOperator: Operator) => {
+    if (memory.length) {
+      const memoryTotal = memory.reduce((acc: number, curr: number) => acc + curr, 0);
+
+      dispatch(updateTape("··", memory.length));
+      dispatch(updateTape(currentOperator, memoryTotal));
+      dispatch(setDisplay(memoryTotal.toString()));
+
+      if (currentOperator === "M*") {
+        dispatch(updateTape("···"));
+        dispatch(clearMemory());
+      }
+
+      dispatch(setOperator(currentOperator));
+    }
+  };
+
+  const handlePercent = () => {
+    const number = numeral(display).value();
+
+    if (number && auxNumber) {
+      const result = operator === "×" ? (auxNumber * number) / 100 : (auxNumber / number) * 100;
+
+      dispatch(updateTape("%", number));
+      dispatch(updateTape("·", result));
+      dispatch(setDisplay(result.toString()));
+      dispatch(setAuxNumber(0));
+    }
+  };
+
+  const handleMarkUp = () => {
+    const number = numeral(display).value();
+
+    if (number && auxNumber) {
+      const value = operator === "×" ? -number : number;
+      const result = auxNumber / (1 + value / 100);
+
+      dispatch(updateTape("%", number));
+      dispatch(updateTape("···", result));
+      dispatch(setDisplay(result.toString()));
+      dispatch(setAuxNumber(0));
+    }
+  };
+
+  const handleItems = () => {
+    const total = sum.reduce((acc: number, curr: number) => acc + curr, 0);
+
+    dispatch(updateTape("··", sum.length));
+    dispatch(updateTape("♢", total));
+  };
+
+  const handleAverage = () => {
+    if (sum.length) {
+      const total = sum.reduce((acc: number, curr: number) => acc + curr, 0);
+
+      dispatch(updateTape("··", sum.length));
+      dispatch(updateTape("#", total / sum.length));
+      dispatch(setDisplay((total / sum.length).toString()));
+    }
   };
 
   return {
@@ -146,6 +215,15 @@ export const useCalculator = () => {
     handleClearPress,
     handleClearAllPress,
     handleClearAllLongPress,
-    handleOperatorPress,
+    handleSum,
+    handleMultiplication,
+    handleTotal,
+    handleGrandTotal,
+    handleMemorySum,
+    handleMemoryTotal,
+    handlePercent,
+    handleMarkUp,
+    handleItems,
+    handleAverage,
   };
 };

@@ -2,7 +2,6 @@ import { Numpad, Operator, TapeItem } from "./propTypes";
 
 export enum ActionType {
   SET_NUM1 = "SET_NUM1",
-  SET_NUM2 = "SET_NUM2",
   SET_OPERATOR = "SET_OPERATOR",
   SET_DISPLAY = "SET_DISPLAY",
   UPDATE_DISPLAY = "UPDATE_DISPLAY",
@@ -24,7 +23,7 @@ export enum ActionType {
 }
 
 type actionSetNumber = {
-  type: ActionType.SET_NUM1 | ActionType.SET_NUM2;
+  type: ActionType.SET_NUM1;
   payload: number;
 };
 

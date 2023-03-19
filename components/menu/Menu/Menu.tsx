@@ -1,14 +1,7 @@
 import { ParamListBase, useNavigation } from "@react-navigation/native";
 import { Pressable, Text, View } from "react-native";
 import React, { useCallback, useState } from "react";
-import {
-  RootState,
-  clearAll,
-  clearTape,
-  loadTape,
-  saveTape,
-  setSavedTapes,
-} from "../../../store";
+import { RootState, clearAll, clearTape, loadTape, saveTape, setSavedTapes } from "../../../store";
 import { useDispatch, useSelector } from "react-redux";
 
 import { MenuButton } from "../MenuButton/MenuButton";
@@ -49,18 +42,9 @@ const Menu = () => {
 
   return (
     <>
-      {isOpen && (
-        <Pressable
-          style={styles.overlay}
-          onPress={() => setIsOpen(prev => !prev)}
-        />
-      )}
+      {isOpen && <Pressable style={styles.overlay} onPress={() => setIsOpen(prev => !prev)} />}
       <View pointerEvents="box-none" style={styles.wrapper}>
-        <View
-          style={
-            isOpen ? { ...styles.container, ...styles.open } : styles.container
-          }
-        >
+        <View style={isOpen ? { ...styles.container, ...styles.open } : styles.container}>
           <Text style={styles.text} onPress={handleClear}>
             Clear tape
           </Text>
@@ -76,8 +60,6 @@ const Menu = () => {
           <Text style={styles.text} onPress={handleScanQR}>
             Scan QR
           </Text>
-          <Text style={styles.text}>Tax rate</Text>
-          <Text style={styles.text}>Theme</Text>
           <Text style={styles.text} onPress={handleManual}>
             Manual
           </Text>

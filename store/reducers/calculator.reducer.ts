@@ -5,8 +5,7 @@ import { AnyAction } from "redux";
 import { formatDisplay } from "../../logic";
 
 const initialState = {
-  num1: 0,
-  num2: 0,
+  auxNumber: 0,
   operator: "" as Operator,
   display: "0",
   sum: [] as number[],
@@ -20,12 +19,7 @@ const CalculatorReducer = (state = initialState, action: AnyAction) => {
     case ActionType.SET_NUM1:
       return {
         ...state,
-        num1: action.payload,
-      };
-    case ActionType.SET_NUM2:
-      return {
-        ...state,
-        num2: action.payload,
+        auxNumber: action.payload,
       };
     case ActionType.SET_OPERATOR:
       return {
@@ -85,8 +79,7 @@ const CalculatorReducer = (state = initialState, action: AnyAction) => {
     case ActionType.CLEAR_ALL:
       return {
         ...state,
-        num1: 0,
-        num2: 0,
+        auxNumber: 0,
         operator: "" as Operator,
         display: "0",
         sum: [] as number[],

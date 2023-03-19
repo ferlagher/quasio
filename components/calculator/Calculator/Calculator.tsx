@@ -14,24 +14,27 @@ const Calculator = () => {
     handleClearPress,
     handleClearAllPress,
     handleClearAllLongPress,
-    handleOperatorPress,
+    handleSum,
+    handleMultiplication,
+    handleTotal,
+    handleGrandTotal,
+    handleMemorySum,
+    handleMemoryTotal,
+    handlePercent,
+    handleMarkUp,
+    handleItems,
+    handleAverage,
   } = useCalculator();
 
   return (
     <View style={styles.calculator}>
       <Display value={display} />
       <View style={styles.buttonsContainer}>
-        <CalcButton label="COST" onPress={() => {}} type="small" />
-        <CalcButton label="SELL" onPress={() => {}} type="small" />
-        <CalcButton label="MAR" onPress={() => {}} type="small" />
-        <CalcButton label="IT" onPress={() => {}} type="small" />
-        <CalcButton label="♢/#" onPress={() => {}} type="small" />
-
-        <CalcButton label="TAX+" onPress={() => {}} type="small" />
-        <CalcButton label="TAX-" onPress={() => {}} type="small" />
+        <CalcButton label="IT" onPress={handleAverage} type="small" />
+        <CalcButton label="♢/#" onPress={handleItems} type="small" />
         <CalcButton label="+/-" onPress={handleChangeSignPress} type="small" />
-        <CalcButton label="%" onPress={() => {}} type="small" />
-        <CalcButton label="MD/MU" onPress={() => {}} type="small" />
+        <CalcButton label="%" onPress={handlePercent} type="small" />
+        <CalcButton label="MD/MU" onPress={handleMarkUp} type="small" />
 
         <CalcButton
           label="CA"
@@ -41,32 +44,32 @@ const Calculator = () => {
         />
         <CalcButton label="C" onPress={handleClearPress} />
         <CalcButton label="▻" onPress={handleBackspacePress} />
-        <CalcButton label="M♢" onPress={handleOperatorPress} />
-        <CalcButton label="M*" onPress={handleOperatorPress} />
+        <CalcButton label="M♢" onPress={handleMemoryTotal} />
+        <CalcButton label="M*" onPress={handleMemoryTotal} />
 
         <CalcButton label="7" onPress={handleNumpadPress} />
         <CalcButton label="8" onPress={handleNumpadPress} />
         <CalcButton label="9" onPress={handleNumpadPress} />
-        <CalcButton label="M+" onPress={handleOperatorPress} />
-        <CalcButton label="M-" onPress={handleOperatorPress} />
+        <CalcButton label="M+" onPress={handleMemorySum} />
+        <CalcButton label="M-" onPress={handleMemorySum} />
 
         <CalcButton label="6" onPress={handleNumpadPress} />
         <CalcButton label="5" onPress={handleNumpadPress} />
         <CalcButton label="4" onPress={handleNumpadPress} />
-        <CalcButton label="-" onPress={handleOperatorPress} type="minus" />
-        <CalcButton label="÷" onPress={handleOperatorPress} />
+        <CalcButton label="-" onPress={handleSum} type="minus" />
+        <CalcButton label="÷" onPress={handleMultiplication} />
 
         <CalcButton label="3" onPress={handleNumpadPress} />
         <CalcButton label="2" onPress={handleNumpadPress} />
         <CalcButton label="1" onPress={handleNumpadPress} />
-        <CalcButton label="⩲" onPress={handleOperatorPress} type="plus" />
-        <CalcButton label="×" onPress={handleOperatorPress} />
+        <CalcButton label="⩲" onPress={handleSum} type="plus" />
+        <CalcButton label="×" onPress={handleMultiplication} />
 
         <CalcButton label="0" onPress={handleNumpadPress} />
         <CalcButton label="00" onPress={handleNumpadPress} />
         <CalcButton label="." onPress={handleNumpadPress} />
-        <CalcButton label="*" onPress={handleOperatorPress} />
-        <CalcButton label="G*" onPress={handleOperatorPress} />
+        <CalcButton label="*" onPress={handleTotal} />
+        <CalcButton label="G*" onPress={handleGrandTotal} />
       </View>
     </View>
   );
