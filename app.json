@@ -2,6 +2,9 @@
   "expo": {
     "name": "quasio",
     "slug": "quasio",
+    "platforms": [
+      "android"
+    ],
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -9,24 +12,35 @@
     "splash": {
       "image": "./assets/splash.png",
       "resizeMode": "contain",
-      "backgroundColor": "#232325"
+      "backgroundColor": "#292929"
     },
     "updates": {
       "fallbackToCacheTimeout": 0
     },
-    "assetBundlePatterns": ["**/*"],
-    "ios": {
-      "supportsTablet": true
-    },
+    "assetBundlePatterns": [
+      "**/*"
+    ],
     "android": {
       "softwareKeyboardLayoutMode": "pan",
       "adaptiveIcon": {
-        "foregroundImage": "./assets/adaptive-icon.png",
-        "backgroundColor": "#FFFFFF"
-      }
+        "foregroundImage": "./assets/icon.png",
+        "backgroundColor": "#292929"
+      },
+      "permissions": [
+        "CAMERA",
+        "READ_EXTERNAL_STORAGE",
+        "WRITE_EXTERNAL_STORAGE"
+      ],
+      "package": "com.ferlagher.quasio"
     },
     "web": {
       "favicon": "./assets/favicon.png"
-    }
+    },
+    "extra": {
+      "eas": {
+        "projectId": "dbff89c2-a396-4124-9c05-abfcd94161fa"
+      }
+    },
+    "owner": "ferlagher"
   }
 }
