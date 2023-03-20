@@ -5,7 +5,7 @@ export const styles = StyleSheet.create({
   list: {
     flex: 1,
     paddingHorizontal: theme.SPACE_LG,
-    marginTop: theme.SPACE_LG,
+    marginTop: theme.SPACE_MD,
     overflow: "scroll",
     marginBottom: theme.SPACE_MD,
   },
@@ -20,5 +20,14 @@ export const styles = StyleSheet.create({
   text: {
     color: theme.COLOR_TEXT,
     fontSize: theme.FONT_MD,
+  },
+  container: {
+    flex: 1,
+    maxHeight: "100%",
+    flexDirection: "column",
+    alignItems: "center",
+    justifyContent: "center",
+    backgroundColor: theme.COLOR_BACKGROUND,
+    paddingTop: 10,
   },
 });

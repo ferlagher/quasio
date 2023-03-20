@@ -4,12 +4,9 @@ import { init } from "./db";
 import store from "./store";
 import { useFonts } from "expo-font";
 
-init()
-  .then(() => console.log("Initialized database"))
-  .catch(err => {
-    console.log("Error initializing db", err);
-    alert("Error initializing database");
-  });
+init().catch(() => {
+  alert("Error initializing database");
+});
 
 export default function App() {
   const [fontsLoaded] = useFonts({

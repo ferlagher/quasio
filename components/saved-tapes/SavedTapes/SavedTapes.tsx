@@ -1,4 +1,4 @@
-import { FlatList, Pressable, Text } from "react-native";
+import { FlatList, Pressable, Text, View } from "react-native";
 import { ParamListBase, useNavigation } from "@react-navigation/native";
 import { RootState, setTape } from "../../../store";
 import { useDispatch, useSelector } from "react-redux";
@@ -13,22 +13,26 @@ const Menu = () => {
   const dispatch = useDispatch();
   const { savedTapes } = useSelector((state: RootState) => state.tape);
   const navigation = useNavigation<NativeStackNavigationProp<ParamListBase>>();
-  console.log("🚀 ~ file: SavedTapes.tsx:11 ~ Menu ~ savedTapes:", savedTapes);
 
   const handlePress = async (id: string) => {
     try {
       const res = await fetch(`${API_URL}tapes/${id}.json`);
       const data = await res.json();
-      console.log("🚀 ~ file: SavedTapes.tsx:21 ~ handlePress ~ data:", data);
 
       dispatch(setTape(data));
       calculateTape(data);
       navigation.navigate("Calculator");
     } catch (err) {
-      console.log("🚀 ~ file: SavedTapes.tsx:26 ~ Menu ~ err", err);
       alert("Error loading tape.");
     }
   };
+
+  if (!savedTapes.length)
+    return (
+      <View style={styles.container}>
+        <Text style={styles.text}>Nothing saved.</Text>
+      </View>
+    );
 
   return (
     <FlatList

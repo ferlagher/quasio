@@ -52,8 +52,12 @@ export const QRScanner = () => {
     navigation.navigate("Calculator");
   };
 
-  if (hasPermission === false) {
-    return <Text>Permission needed</Text>;
+  if (!hasPermission) {
+    return (
+      <View style={styles.container}>
+        <Text style={styles.text}>Can't scan anything without camera permissions. 😿</Text>
+      </View>
+    );
   }
 
   return (

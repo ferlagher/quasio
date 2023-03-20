@@ -5,7 +5,7 @@ export const styles = StyleSheet.create({
   icon: {
     fontFamily: "Inter",
     fontSize: theme.FONT_MD,
-    color: theme.COLOR_TEXT,
+    color: theme.COLOR_BACKGROUND,
     lineHeight: theme.FONT_MD,
     width: theme.FONT_MD,
     padding: theme.SPACE_XS,

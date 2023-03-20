@@ -1,13 +1,13 @@
-import Svg, { Circle, G, Line, Path, Rect } from "react-native-svg";
+import Svg, { Circle, G, Line, Path, Polygon, Rect } from "react-native-svg";
 
 import React from "react";
 import theme from "../../constants/themes/darkTheme";
 
 export const Icons = {
-  Basic: (
+  Basic: (focused: boolean) => (
     <Svg viewBox="0 0 24 24">
       <G
-        stroke={theme.COLOR_TEXT}
+        stroke={focused ? theme.COLOR_TEXT_NEGATIVE : theme.COLOR_TEXT}
         strokeLinecap="round"
         strokeLinejoin="round"
         strokeWidth="2"
@@ -25,10 +25,10 @@ export const Icons = {
       </G>
     </Svg>
   ),
-  Memory: (
+  Memory: (focused: boolean) => (
     <Svg viewBox="0 0 24 24">
       <G
-        stroke={theme.COLOR_TEXT}
+        stroke={focused ? theme.COLOR_TEXT_NEGATIVE : theme.COLOR_TEXT}
         strokeLinecap="round"
         strokeLinejoin="round"
         strokeWidth="2"
@@ -47,34 +47,38 @@ export const Icons = {
       </G>
     </Svg>
   ),
-  Percent: (
+  Percent: (focused: boolean) => (
     <Svg viewBox="0 0 24 24">
       <G
-        stroke={theme.COLOR_TEXT}
+        stroke={focused ? theme.COLOR_TEXT_NEGATIVE : theme.COLOR_TEXT}
         strokeLinecap="round"
         strokeLinejoin="round"
         strokeWidth="2"
       >
         <Path d="M0 0h24v24H0z" fill="none" stroke="none" />
         <Line x1="9" x2="15" y1="14" y2="8" />
-        <Circle cx="9.5" cy="8.5" fill={theme.COLOR_TEXT} r=".5" />
-        <Circle cx="14.5" cy="13.5" fill={theme.COLOR_TEXT} r=".5" />
+        <Circle
+          cx="9.5"
+          cy="8.5"
+          fill={focused ? theme.COLOR_TEXT_NEGATIVE : theme.COLOR_TEXT}
+          r=".5"
+        />
+        <Circle
+          cx="14.5"
+          cy="13.5"
+          fill={focused ? theme.COLOR_TEXT_NEGATIVE : theme.COLOR_TEXT}
+          r=".5"
+        />
         <Path d="M5 21v-16a2 2 0 0 1 2 -2h10a2 2 0 0 1 2 2v16l-3 -2l-2 2l-2 -2l-2 2l-2 -2l-3 2" />
       </G>
     </Svg>
   ),
-  Cost: (
-    <Svg viewBox="0 0 24 24">
-      <G
-        stroke={theme.COLOR_TEXT}
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        strokeWidth="2"
-      >
-        <Path d="M0 0h24v24H0z" fill="none" stroke="none" />
-        <Path d="M5 21v-16a2 2 0 0 1 2 -2h10a2 2 0 0 1 2 2v16l-3 -2l-2 2l-2 -2l-2 2l-2 -2l-3 2" />
-        <Path d="M14 8h-2.5a1.5 1.5 0 0 0 0 3h1a1.5 1.5 0 0 1 0 3h-2.5m2 0v1.5m0 -9v1.5" />
-      </G>
+  Arrow: (
+    <Svg viewBox="0 0 16 16" fill={theme.COLOR_TEXT}>
+      <Polygon
+        fill-rule="evenodd"
+        points="9.586 8 4.293 2.707 5.707 1.293 12.414 8 5.707 14.707 4.293 13.293"
+      />
     </Svg>
   ),
 };

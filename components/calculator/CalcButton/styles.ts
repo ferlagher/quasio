@@ -2,8 +2,7 @@ import { Dimensions } from "react-native";
 import { StyleSheet } from "react-native";
 import theme from "../../../constants/themes/darkTheme";
 
-const size =
-  Dimensions.get("window").width / 5 - theme.SPACE_XS * 2 - theme.SPACE_SM;
+const size = Dimensions.get("window").width / 5 - theme.SPACE_XS * 2 - theme.SPACE_SM;
 
 export const styles = StyleSheet.create({
   button: {

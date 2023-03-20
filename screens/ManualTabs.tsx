@@ -23,21 +23,21 @@ export const ManualTabs = () => {
         name="Basic"
         component={ManualBasic}
         options={{
-          tabBarIcon: () => Icons.Basic,
+          tabBarIcon: ({ focused }) => Icons.Basic(focused),
         }}
       />
       <Tab.Screen
         name="Memory"
         component={ManualMemory}
         options={{
-          tabBarIcon: () => Icons.Memory,
+          tabBarIcon: ({ focused }) => Icons.Memory(focused),
         }}
       />
       <Tab.Screen
         name="Percentage"
         component={ManualPercentage}
         options={{
-          tabBarIcon: () => Icons.Percent,
+          tabBarIcon: ({ focused }) => Icons.Percent(focused),
         }}
       />
     </Tab.Navigator>

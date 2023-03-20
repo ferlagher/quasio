@@ -20,7 +20,6 @@ const Tape = () => {
         calculateTape(res.rows._array);
       })
       .catch(err => {
-        console.log("🚀 ~ file: Tape.tsx:19 ~ useEffect ~ err:", err);
         alert("Error fetching tape from database");
       });
   }, []);

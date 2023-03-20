@@ -8,7 +8,6 @@ export const styles = StyleSheet.create({
     backgroundColor: theme.COLOR_BACKGROUND,
   },
   content: {
-    paddingTop: theme.SPACE_LG,
     paddingBottom: theme.SPACE_LG * 2.5,
   },
   title: {

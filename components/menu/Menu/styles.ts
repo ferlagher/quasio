@@ -27,7 +27,6 @@ export const styles = StyleSheet.create({
   open: {
     width: "auto",
     padding: theme.SPACE_LG,
-    paddingTop: theme.SPACE_LG * 2,
   },
   overlay: {
     position: "absolute",

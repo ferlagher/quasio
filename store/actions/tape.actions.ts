@@ -15,7 +15,6 @@ export const setTape = (tape: TapeItem[]) => {
         payload: tape,
       });
     } catch (err) {
-      console.log("🚀 ~ file: tape.actions.ts:34 ~ err:", err);
       alert("Error saving calculation in database");
     }
   };
@@ -24,7 +23,6 @@ export const setTape = (tape: TapeItem[]) => {
 export const updateTape = (operator: Operator, number: number = 0, note?: string) => {
   number = Math.min(number, MAX_VALUE);
   insertCalculations(number, operator, note).catch(err => {
-    console.log("🚀 ~ file: tape.actions.ts:23 ~ err:", err.message);
     alert("Error saving calculation in database");
   });
   return {
@@ -40,7 +38,6 @@ export const updateNote = (id: TapeItem["id"], note: TapeItem["note"]) => ({
 
 export const clearTape = () => {
   deleteTape().catch(err => {
-    console.log("🚀 ~ file: tape.actions.ts:41 ~ err:", err.message);
     alert("Error deleting tape in database");
   });
   return { type: ActionType.CLEAR_TAPE };
@@ -63,7 +60,6 @@ export const saveTape = (tape: TapeItem[]) => {
       await insertSavedId(data.name, date);
       alert("Tape saved in cloud");
     } catch (err) {
-      console.log("🚀 ~ file: tape.actions.ts:34 ~ err:", err);
       alert("Error saving tape in cloud");
     }
   };
@@ -79,7 +75,6 @@ export const setSavedTapes = () => {
         payload: res,
       });
     } catch (err) {
-      console.log("🚀 ~ file: tape.actions.ts:83 ~ err:", err);
       alert("Error retrieving tapes from cloud");
     }
   };

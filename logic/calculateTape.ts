@@ -28,7 +28,6 @@ export const calculateTape = (tape: TapeItem[]) => {
 
   tape.forEach(item => {
     insertCalculations(item.number, item.operator, item.note).catch(err => {
-      console.log("🚀 ~ file: tape.actions.ts:23 ~ err:", err.message);
       alert("Error saving calculation in database");
     });
 

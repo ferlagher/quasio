@@ -1,5 +1,6 @@
 import { Text, View } from "react-native";
 
+import { BackButton } from "../../shared";
 import QRCode from "react-native-qrcode-svg";
 import React from "react";
 import { RootState } from "../../../store";
@@ -40,6 +41,7 @@ export const QRGenerator = () => {
     <View style={styles.container}>
       <Text style={styles.title}>Your QR code:</Text>
       <QRCode size={200} quietZone={5} value={JSON.stringify(value)} />
+      <BackButton />
     </View>
   );
 };

@@ -5,7 +5,7 @@ export const styles = StyleSheet.create({
   tape: {
     flex: 1,
     paddingHorizontal: theme.SPACE_LG,
-    marginTop: theme.SPACE_LG,
+    marginTop: theme.SPACE_MD,
   },
   list: {
     overflow: "scroll",

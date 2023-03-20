@@ -11,4 +11,9 @@ export const styles = StyleSheet.create({
     backgroundColor: theme.COLOR_BACKGROUND,
     paddingTop: 10,
   },
+  text: {
+    color: theme.COLOR_TEXT,
+    fontSize: theme.FONT_LG,
+    margin: theme.SPACE_LG,
+  },
 });
